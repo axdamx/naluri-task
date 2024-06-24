@@ -1,42 +1,16 @@
 import sunLottie from "./assets/sun.json";
 import "./App.css";
-import axios from "axios";
 import Lottie from "lottie-react";
-import { useQuery } from "@tanstack/react-query";
+import useGetPiQuery from "./hooks/useGetPiQuery";
+import useGetCircumferenceQuery from "./hooks/useGetCircumferenceQuery";
 
 function App() {
-  const fetchPi = async () => {
-    const response = await axios.get("http://localhost:3001/pi");
-    if (!response) {
-      throw new Error("Failed to fetch pi");
-    }
-    return response.data.pi;
-  };
-
-  const fetchCircumference = async () => {
-    const response = await axios.get("http://localhost:3001/circumference");
-    if (!response) {
-      throw new Error("Failed to fetch circumference");
-    }
-    return response.data.circumference;
-  };
-
-  const {
-    data: pi,
-    isLoading: isLoadingPi,
-    error: errorPi,
-  } = useQuery({
-    queryFn: () => fetchPi(),
-    queryKey: ["pi"],
-  });
+  const { data: pi, isLoading: isLoadingPi, error: errorPi } = useGetPiQuery();
   const {
     data: circumference,
     isLoading: isLoadingCircumference,
     error: errorCircumference,
-  } = useQuery({
-    queryFn: () => fetchCircumference(),
-    queryKey: ["circumference"],
-  });
+  } = useGetCircumferenceQuery();
 
   if (isLoadingCircumference && isLoadingPi) {
     return <h1>Loading...</h1>;
