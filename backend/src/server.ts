@@ -1,8 +1,12 @@
 import express from 'express';
+import cors from 'cors'; // Import cors middleware
 import { calculateNextPi, getCurrentPi } from './piCalculator';
 
 const app = express();
 const port = 3001;
+
+// Use cors middleware to enable CORS
+app.use(cors());
 
 app.get('/pi', (req, res) => {
   const pi = calculateNextPi();

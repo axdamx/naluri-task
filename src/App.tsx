@@ -1,35 +1,64 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import sunLottie from "./assets/sun.json";
+import "./App.css";
+import axios from "axios";
+import Lottie from "lottie-react";
+import { useQuery } from "@tanstack/react-query";
 
 function App() {
-  const [count, setCount] = useState(0)
+  const fetchPi = async () => {
+    const response = await axios.get("http://localhost:3001/pi");
+    if (!response) {
+      throw new Error("Failed to fetch pi");
+    }
+    return response.data.pi;
+  };
+
+  const fetchCircumference = async () => {
+    const response = await axios.get("http://localhost:3001/circumference");
+    if (!response) {
+      throw new Error("Failed to fetch circumference");
+    }
+    return response.data.circumference;
+  };
+
+  const {
+    data: pi,
+    isLoading: isLoadingPi,
+    error: errorPi,
+  } = useQuery({
+    queryFn: () => fetchPi(),
+    queryKey: ["pi"],
+  });
+  const {
+    data: circumference,
+    isLoading: isLoadingCircumference,
+    error: errorCircumference,
+  } = useQuery({
+    queryFn: () => fetchCircumference(),
+    queryKey: ["circumference"],
+  });
+
+  if (isLoadingCircumference && isLoadingPi) {
+    return <h1>Loading...</h1>;
+  }
+
+  if (errorCircumference && errorPi) {
+    return <h1>Error...</h1>;
+  }
 
   return (
     <>
       <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
+        <Lottie animationData={sunLottie} loop={true} />
       </div>
-      <h1>Vite + React</h1>
       <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
+        <div>
+          <p>Current Value of Pi: {pi}</p>
+          <p>Circumference of the Sun: {circumference} km</p>
+        </div>
       </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
     </>
-  )
+  );
 }
 
-export default App
+export default App;
