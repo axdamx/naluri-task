@@ -26,4 +26,5 @@ This project calculates the value of Pi to increasing precision and provides an 
 
 - Backend
   - Express
-   
+
+   <img width="561" alt="Screenshot 2024-06-24 at 1 16 05 PM" src="https://github.com/axdamx/naluri-task/assets/40446823/8883719a-99d9-4f34-af61-5e6e9d4cc00b">
