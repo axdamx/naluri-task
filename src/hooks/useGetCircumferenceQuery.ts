@@ -6,13 +6,13 @@ const fetchCircumference = async () => {
     if (!response) {
       throw new Error("Failed to fetch circumference");
     }
-    return response.data.circumference;
+    return response.data;
   };
 
   const useGetCircumferenceQuery = () => {
     return useQuery({
       queryFn: () => fetchCircumference(),
-      queryKey: ['pi'],
+      queryKey: ['circumference'],
     });
   };
   

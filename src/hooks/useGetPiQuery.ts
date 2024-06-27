@@ -6,7 +6,7 @@ import axios from "axios";
     if (!response) {
       throw new Error("Failed to fetch pi");
     }
-    return response.data.pi;
+    return response.data;
   };
 
 

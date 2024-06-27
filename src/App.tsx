@@ -6,13 +6,13 @@ import useGetCircumferenceQuery from "./hooks/useGetCircumferenceQuery";
 
 function App() {
   const {
-    data: pi,
+    data: piData,
     isLoading: isLoadingPi,
     error: errorPi,
     refetch: refetchPi,
   } = useGetPiQuery();
   const {
-    data: circumference,
+    data: circumferenceData,
     isLoading: isLoadingCircumference,
     error: errorCircumference,
     refetch: refetchCircumference,
@@ -23,13 +23,16 @@ function App() {
     refetchCircumference();
   };
 
-  if (isLoadingCircumference && isLoadingPi) {
+  if (isLoadingCircumference || isLoadingPi) {
     return <h1>Loading...</h1>;
   }
 
   if (errorCircumference && errorPi) {
     return <h1>Error...</h1>;
   }
+
+  const { pi, iterations } = piData;
+  const { circumference, radiusOfSunKm } = circumferenceData;
 
   return (
     <>
@@ -38,10 +41,12 @@ function App() {
       </div>
       <div className="card">
         <div>
-          <p>Current Value of Pi: {pi}</p>
-          <p>Circumference of the Sun: {circumference} km</p>
+          <p>The current iterations: {iterations}</p>
+          <p>Current Value of Pi (π): {pi}</p>
+          <p>The radius of sun in KM : {radiusOfSunKm}</p>
+          <p>Circumference of the Sun (2πr): {circumference} km</p>
         </div>
-        <button onClick={handleRefresh}>Refresh Data</button>
+        <button onClick={handleRefresh}>Next Iteration</button>
       </div>
     </>
   );

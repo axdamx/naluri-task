@@ -9,15 +9,15 @@ const port = 3001;
 app.use(cors());
 
 app.get('/pi', (req, res) => {
-  const pi = calculateNextPi();
-  res.json({ pi });
+  const { pi, iterations } = calculateNextPi();
+  res.json({ pi, iterations });
 });
 
 app.get('/circumference', (req, res) => {
   const radiusOfSunKm = 696340; // Radius of the sun in kilometers
-  const piValue = getCurrentPi();
-  const circumference = 2 * parseFloat(piValue) * radiusOfSunKm;
-  res.json({ circumference });
+  const { pi, iterations } = getCurrentPi();
+  const circumference = 2 * parseFloat(pi) * radiusOfSunKm;
+  res.json({ circumference, pi, iterations, radiusOfSunKm });
 });
 
 app.listen(port, () => {
