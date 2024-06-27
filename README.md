@@ -33,6 +33,9 @@ This project calculates the value of Pi to increasing precision and provides an 
 ## Pi Calculation Explaination
 The calculation of Pi in this project is based on the Leibniz formula for Pi, which is expressed as:
 
+<img width="175" alt="Screenshot 2024-06-27 at 8 33 27 AM" src="https://github.com/axdamx/naluri-task/assets/40446823/3435ffc7-067f-4262-81f9-b561a5d472ab">
+
+
 Step-by-Step Calculation
 
 1. Iteration Variable:
@@ -100,4 +103,5 @@ Tenth Iteration
 - Results
    - { pi: "3.0418396189", iterations: 10 }
 
-   
+   <img width="100" alt="Screenshot 2024-06-27 at 8 33 36 AM" src="https://github.com/axdamx/naluri-task/assets/40446823/f4cf9d3c-5ecb-4db6-9cef-33d2d3de804f">
+
