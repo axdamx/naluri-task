@@ -59,6 +59,7 @@ Math.pow(-1, iterations) computes (−1)^iterations, which alternates between 1 
 The result of the series term is multiplied by 4 to fit the formula for Pi.
 ```
 
+Javascript Implementation
 ```
 let currentPi = 0;
 let iterations = 0;
@@ -103,5 +104,8 @@ Tenth Iteration
 - Results
    - { pi: "3.0418396189", iterations: 10 }
 
+### Calculating the circumference of the Sun
+
    <img width="100" alt="Screenshot 2024-06-27 at 8 33 36 AM" src="https://github.com/axdamx/naluri-task/assets/40446823/f4cf9d3c-5ecb-4db6-9cef-33d2d3de804f">
 
+where 2πr = 2 * π * 696340 // in km
